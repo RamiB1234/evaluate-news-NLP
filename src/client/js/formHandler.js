@@ -4,8 +4,8 @@ function handleSubmit(event) {
     // check what text was put into the form field
     let formText = document.getElementById('name').value
     if(Client.checkURL(formText)===true){
-        //getApiKey('https://npl-evaluater.herokuapp.com/getapikey')
-        getApiKey('http://localhost:8081/getapikey')
+        getApiKey('https://npl-evaluater.herokuapp.com/getapikey')
+        //getApiKey('http://localhost:8081/getapikey')
         .then(function(data){
           console.log('key is: '+data.key);
 
@@ -51,14 +51,16 @@ async function getApiKey(url){
 }
 
 async function analyzeData(data){
-
+  document.getElementById('loading').style.visibility = "visible"; 
   const res = await fetch('https://api.meaningcloud.com/sentiment-2.1?key='+data.key+'&lang=en&of=json&url='+data.url)
   try {
     const data = await res.json();
     console.log(data)
+    document.getElementById('loading').style.visibility = "hidden"; 
     return data;
   }  catch(error) {
     console.log("error", error);
+    document.getElementById('loading').style.visibility = "hidden"; 
   }
 }
 
