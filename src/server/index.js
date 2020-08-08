@@ -36,3 +36,7 @@ app.post('/analyze', function (req, res) {
     console.log(req.body.enteredUrl);
     res.send(mockAPIResponse)
 })
+
+app.get('/getapikey', function (req, res){
+    res.send({key: application_key})
+})
