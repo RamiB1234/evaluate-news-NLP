@@ -33,7 +33,7 @@ function handleSubmit(event) {
     }
 }
 
-const getApiKey= async (url)=>{
+async function getApiKey(url){
 
   const res = await fetch(url, {
       method : "GET",
@@ -49,11 +49,10 @@ const getApiKey= async (url)=>{
   }
 }
 
-const analyzeData= async (data)=>{
+async function analyzeData(data){
 
   const res = await fetch('https://api.meaningcloud.com/sentiment-2.1?key='+data.key+'&lang=en&of=json&url='+data.url)
   try {
-
     const data = await res.json();
     console.log(data)
     return data;
@@ -62,4 +61,4 @@ const analyzeData= async (data)=>{
   }
 }
 
-export { handleSubmit }
+export { handleSubmit, getApiKey }
